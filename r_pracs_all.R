@@ -83,3 +83,11 @@ cars_seller_type = data %>% count(seller)
 
 #Calculate the average difference between the selling price and MMR (Manheim Market Report) by condition
 avd_diff = data %>% group_by(condition) %>% summarise(avg_price_diff = mean(sellingprice - mmr))
+
+
+
+ggplot(data = BOD,
+       mapping = aes(x = Time ,
+                     y = demand))+
+  geom_point(size = 5)+
+  geom_line(colour = "red")
