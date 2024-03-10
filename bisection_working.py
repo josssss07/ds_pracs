@@ -15,14 +15,14 @@ def eval_polynomial(coeff, x):
   Returns:
       Float representing the value of the polynomial at x.
   """
-  result = 0.0
-  i = 0
-  for i, c in enumerate(coeff):
-    result += c * x**i
+  result = 0
+  i=0
+  for i in range(len(coeff)):
+    result += coeff[i] * x**i
   return result
 
 
-def bisection(degree, coeff, tolerance=0.001):
+def bisection(degree, coeff, tolerance=0.0001):
   """
   This function implements the bisection method to find a root of a polynomial.
 
@@ -34,7 +34,7 @@ def bisection(degree, coeff, tolerance=0.001):
   Returns:
       Float representing the approximated root of the polynomial.
   """
-
+  print(coeff)
   x1, x2 = 0.0, 1.0  # Initial interval (can be adjusted based on the polynomial)
   func_x0 = 0.0  # Variable to store the function value at the midpoint
 
@@ -44,7 +44,8 @@ def bisection(degree, coeff, tolerance=0.001):
     x = x1 + i * (x2 - x1) / (degree + 1)  # Check function value at evenly spaced points
     current_sign = sign(eval_polynomial(coeff, x))
     if prev_sign != current_sign:
-      x1, x2 = x - (x2 - x1) / 2, x  # Update interval based on sign change
+      x1 = x - (x2 - x1) / 2
+      x2 = x  # Update interval based on sign change
       break
     prev_sign = current_sign
 
