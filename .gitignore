@@ -1,1 +1,31 @@
-/.venv
+def lagrange_interpolation(x, x_data, y_data):
+  """
+  This function implements Lagrange interpolation.
+
+  Args:
+      x: The value at which to interpolate the polynomial.
+      x_data: A list of data points (x-coordinates).
+      y_data: A list of data points (y-coordinates).
+
+  Returns:
+      The interpolated value of the polynomial at x.
+  """
+
+  n = len(x_data)
+  result = 0
+  for i in range(n):
+    product = 1
+    for j in range(n):
+      if i != j:
+        product *= (x - x_data[j]) / (x_data[i] - x_data[j])
+    result += y_data[i] * product
+
+  return result
+
+# Example usage
+x_data = [1, 2, 3, 4]
+y_data = [2, 5, 7, 11]
+x = 2.5
+
+interpolated_value = lagrange_interpolation(x, x_data, y_data)
+print(f"The interpolated value at x = {x} is: {interpolated_value}")
